@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My_project_volley</string>
+    <string name="titleProject">"Working with database: New clients in KARS"</string>
+    <string name="EditText_Enter_your_name">"Введите своё имя:"</string>
+    <string name="Button_send_user_data">"Отправить"</string>
+    <string name="Button_download">"Загрузить данные"</string>
+</resources>
