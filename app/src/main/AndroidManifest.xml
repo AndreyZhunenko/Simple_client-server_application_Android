@@ -21,6 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".for_request_on_server_activity">
+
+        </activity>
     </application>
 
 </manifest>

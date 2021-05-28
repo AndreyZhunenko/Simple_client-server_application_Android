@@ -1,6 +1,8 @@
 package com.example.my_project_volley;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,11 +30,13 @@ import java.io.UnsupportedEncodingException;
 public class MainActivity extends AppCompatActivity {
 
     String urlAdressSend = "http://192.168.0.39/send_data_to_server.php";
-    String urlAdressDownload = "http://192.168.0.39/download_data_from_server.php";
+
 
     EditText yourName;
     TextView Text_for_user;
     TextView ResponseData;
+
+    String result = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         Text_for_user = findViewById(R.id.programmAnswer);
         ResponseData = findViewById(R.id.tv_DownloadData);
     }
-    public void Send_data_on_server(View view){
+    /*public void Send_data_on_server(View view){
         String userData = yourName.getText().toString();
         if (userData.isEmpty()){
             Text_for_user.setText("Ошибка! Укажите ваше имя!");
@@ -50,48 +54,20 @@ public class MainActivity extends AppCompatActivity {
             Text_for_user.setText(null);
             SendPOSTrequest(userData);
         }
-    }
+    }*/
 
     public void Download_data_from_server(View view){
-        String userData = "";
-        SendPOSTrequest(userData);
+        Intent myIntent = new Intent(MainActivity.this, for_request_on_server_activity.class);
+        startActivity(myIntent);
     }
 
 
 
-    private  void SendPOSTrequest(String strData){
+    /*private  void SendPOSTrequest(String strData){
         if (strData.isEmpty()){
-            CustomJsonObjectRequest myRequest = new CustomJsonObjectRequest(Request.Method.GET, urlAdressDownload, null, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    Toast.makeText(MainActivity.this, "Данные успешно получены!", Toast.LENGTH_LONG).show();
-                    ResponseData.setText(response.toString());
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(MainActivity.this, "No Internet", Toast.LENGTH_LONG).show();
-                    Text_for_user.setText(error.toString());
-                }
-            });
-            App.getApp().addToRequestQueue(myRequest);
-            myRequest.setRetryPolicy(new RetryPolicy() {
-                @Override
-                public int getCurrentTimeout() {
-                    return 50000;
-                }
 
-                @Override
-                public int getCurrentRetryCount() {
-                    return 50000;
-                }
-
-                @Override
-                public void retry(VolleyError error) throws VolleyError {
-                }
-            });
         }
-        else {
+       /* else {
             try {
                 JSONObject requestBody = new JSONObject();
                 requestBody.put("Name", strData);
@@ -126,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }
-    }
+        }*/
+   // }
 
 }
